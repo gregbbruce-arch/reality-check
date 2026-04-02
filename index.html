@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Side Hustle Reality Check — Exit Strategy</title>
+  <meta name="description" content="Describe your passive income idea. An AI will tell you what's actually going to happen. No motivational quotes. Just the truth." />
+  <meta property="og:title" content="The Side Hustle Reality Check" />
+  <meta property="og:description" content="Describe your passive income idea. An AI will tell you what's actually going to happen." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💀</text></svg>" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      background: #0a0a0a;
+      color: #e8e4de;
+      font-family: 'Georgia', 'Times New Roman', serif;
+    }
+    ::selection { background: #f4845f; color: #0a0a0a; }
+
+    .grain {
+      position: fixed; inset: 0; opacity: 0.04; pointer-events: none; z-index: 1;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+    .container {
+      position: relative; z-index: 2;
+      max-width: 640px; margin: 0 auto; padding: 48px 24px;
+    }
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; letter-spacing: 5px;
+      text-transform: uppercase; color: #f4845f;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 7vw, 56px);
+      font-weight: 900; line-height: 1.05;
+      margin: 0 0 16px 0; letter-spacing: -1px;
+      background: linear-gradient(135deg, #e8e4de 0%, #f4845f 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    h1 em { font-weight: 400; }
+    .subtitle {
+      font-family: 'Source Serif 4', serif;
+      font-size: 17px; line-height: 1.7; color: #999;
+      max-width: 480px; margin-bottom: 48px;
+    }
+    .form-group { margin-bottom: 28px; }
+    label {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; letter-spacing: 2px;
+      text-transform: uppercase; color: #777;
+      margin-bottom: 10px;
+    }
+    textarea, input[type="text"], select {
+      width: 100%; background: #141414;
+      border: 1px solid #2a2a2a; border-radius: 4px;
+      color: #e8e4de; font-family: 'Source Serif 4', serif;
+      font-size: 16px; padding: 14px 16px; outline: none;
+      transition: border-color 0.2s;
+    }
+    textarea:focus, input[type="text"]:focus { border-color: #f4845f; }
+    textarea { line-height: 1.6; resize: vertical; }
+    select { cursor: pointer; }
+    select option { background: #141414; color: #e8e4de; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .btn-primary {
+      background: #f4845f; color: #0a0a0a; border: none;
+      border-radius: 4px; font-family: 'JetBrains Mono', monospace;
+      font-size: 13px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; padding: 16px 24px;
+      cursor: pointer; transition: all 0.2s; width: 100%;
+    }
+    .btn-primary:disabled { background: #2a2a2a; color: #666; cursor: wait; }
+    .btn-primary.faded { opacity: 0.4; }
+    .btn-secondary {
+      background: transparent; color: #777;
+      border: 1px solid #2a2a2a; border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; padding: 14px 24px; cursor: pointer;
+    }
+    .btn-small {
+      display: inline-block; background: #f4845f; color: #0a0a0a;
+      border: none; border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; padding: 14px 28px;
+      text-decoration: none; cursor: pointer;
+    }
+    .loading-msg {
+      font-family: 'Source Serif 4', serif;
+      font-size: 15px; font-style: italic;
+      color: #f4845f; min-height: 24px; margin-top: 16px;
+    }
+    .error-msg {
+      font-family: 'Source Serif 4', serif;
+      font-size: 15px; color: #e63946;
+      padding: 16px; background: #1a0a0a;
+      border-radius: 4px; border: 1px solid #2a1515;
+      margin-top: 16px;
+    }
+
+    /* Results */
+    .results { animation: slideUp 0.5s ease; }
+    .results-header { border-top: 2px solid #f4845f; padding-top: 32px; margin-bottom: 32px; }
+    .verdict-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 4px; color: #f4845f; margin-bottom: 16px; }
+    .user-idea { font-family: 'Playfair Display', serif; font-size: 15px; font-style: italic; color: #777; }
+
+    .score-gauge { display: flex; align-items: center; gap: 16px; margin: 24px 0; }
+    .score-circle {
+      width: 80px; height: 80px; border-radius: 50%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .score-number { font-size: 28px; font-weight: 800; line-height: 1; }
+    .score-max { font-size: 10px; color: #999; letter-spacing: 0.5px; }
+    .score-label { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; }
+
+    .one-liner { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; line-height: 1.3; margin-bottom: 32px; }
+
+    .section { margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid #1a1a1a; }
+    .section:last-of-type { border-bottom: none; }
+    .section-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 3px; color: #666; margin-bottom: 8px; }
+    .section-text { font-family: 'Source Serif 4', serif; font-size: 16px; line-height: 1.7; color: #ccc; }
+
+    .cta-box {
+      margin: 48px 0 32px; padding: 32px;
+      background: #141414; border: 1px solid #2a2a2a; border-radius: 4px;
+    }
+    .cta-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 4px; color: #f4845f; margin-bottom: 12px; }
+    .cta-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; line-height: 1.3; margin-bottom: 12px; }
+    .cta-body { font-family: 'Source Serif 4', serif; font-size: 15px; line-height: 1.7; color: #999; margin-bottom: 20px; }
+
+    .btn-row { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
+
+    .footer {
+      margin-top: 64px; padding-top: 24px; border-top: 1px solid #1a1a1a;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; letter-spacing: 2px; color: #444; text-transform: uppercase;
+    }
+    .footer span { color: #f4845f; }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="container">
+    <div class="eyebrow">EXIT STRATEGY PRESENTS</div>
+    <h1>The Side Hustle<br><em>Reality Check</em></h1>
+    <p class="subtitle">Describe your passive income idea. An AI will tell you what's actually going to happen. No motivational quotes. No "you've got this." Just the truth.</p>
+
+    <!-- FORM -->
+    <div id="form-section">
+      <div class="form-group">
+        <label>YOUR IDEA</label>
+        <textarea id="idea" rows="4" placeholder="e.g. I want to create an online course about sourdough bread using AI-generated content and sell it for $97..."></textarea>
+      </div>
+      <div class="grid-2 form-group">
+        <div>
+          <label>BUDGET</label>
+          <select id="budget">
+            <option value="Under $500">Under $500</option>
+            <option value="$500–$2,000">$500 – $2,000</option>
+            <option value="$2,000–$10,000">$2,000 – $10,000</option>
+            <option value="Over $10,000">Over $10,000</option>
+          </select>
+        </div>
+        <div>
+          <label>HOURS / WEEK</label>
+          <select id="hours">
+            <option value="1-5">1–5 hours</option>
+            <option value="5-10">5–10 hours</option>
+            <option value="10-20">10–20 hours</option>
+            <option value="20+">20+ hours</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>YOUR SKILLS (OPTIONAL)</label>
+        <input type="text" id="skills" placeholder="e.g. journalism, writing, making poor financial decisions..." />
+      </div>
+      <button class="btn-primary faded" id="submit-btn" disabled>CHECK MY REALITY</button>
+      <div class="loading-msg hidden" id="loading-msg"></div>
+      <div class="error-msg hidden" id="error-msg"></div>
+    </div>
+
+    <!-- RESULTS -->
+    <div id="results-section" class="results hidden">
+      <div class="results-header">
+        <div class="verdict-label">THE VERDICT</div>
+        <div class="user-idea" id="result-idea"></div>
+      </div>
+
+      <div class="score-gauge">
+        <div class="score-circle" id="score-circle">
+          <span class="score-number" id="score-number"></span>
+          <span class="score-max">/10</span>
+        </div>
+        <span class="score-label" id="score-label"></span>
+      </div>
+
+      <div class="one-liner" id="one-liner"></div>
+
+      <div id="sections-container"></div>
+
+      <div class="cta-box">
+        <div class="cta-eyebrow">THIS TOOL WAS EXPERIMENT #1</div>
+        <div class="cta-title">I'm a 49-year-old journalist trying to build a six-figure income using AI and bad advice from the internet.</div>
+        <div class="cta-body">Exit Strategy is a weekly newsletter where I try every money-making scheme I can find, with total honesty, genuine desperation, and the help of AI chatbots who keep telling me my ideas are gold. Subscribe and watch.</div>
+        <a href="https://exitstrategy.substack.com" target="_blank" rel="noopener noreferrer" class="btn-small">SUBSCRIBE TO EXIT STRATEGY</a>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-small" id="reset-btn">TRY ANOTHER IDEA</button>
+        <button class="btn-secondary" id="modify-btn">MODIFY THIS ONE</button>
+      </div>
+
+      <div class="footer">
+        Built by a journalist who should probably be doing this instead of writing about it<br>
+        <span>EXIT STRATEGY</span> — Making money by writing about failing to make money
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const LOADING_MESSAGES = [
+      "Running your idea through the bullshit detector...",
+      "Consulting the ghosts of failed startups...",
+      "Checking if this is worse than dropshipping...",
+      "Asking a 49-year-old journalist if this sounds right...",
+      "Cross-referencing with every LinkedIn guru's promises...",
+      "Calculating your odds of not losing your house...",
+    ];
+
+    const ideaEl = document.getElementById('idea');
+    const budgetEl = document.getElementById('budget');
+    const hoursEl = document.getElementById('hours');
+    const skillsEl = document.getElementById('skills');
+    const submitBtn = document.getElementById('submit-btn');
+    const loadingMsg = document.getElementById('loading-msg');
+    const errorMsg = document.getElementById('error-msg');
+    const formSection = document.getElementById('form-section');
+    const resultsSection = document.getElementById('results-section');
+    const resetBtn = document.getElementById('reset-btn');
+    const modifyBtn = document.getElementById('modify-btn');
+
+    let loadingInterval = null;
+
+    // Enable/disable submit button
+    ideaEl.addEventListener('input', () => {
+      const hasText = ideaEl.value.trim().length > 0;
+      submitBtn.disabled = !hasText;
+      submitBtn.classList.toggle('faded', !hasText);
+    });
+
+    submitBtn.addEventListener('click', handleSubmit);
+    resetBtn.addEventListener('click', () => {
+      ideaEl.value = '';
+      skillsEl.value = '';
+      submitBtn.disabled = true;
+      submitBtn.classList.add('faded');
+      resultsSection.classList.add('hidden');
+      formSection.classList.remove('hidden');
+    });
+    modifyBtn.addEventListener('click', () => {
+      resultsSection.classList.add('hidden');
+      formSection.classList.remove('hidden');
+    });
+
+    async function handleSubmit() {
+      const idea = ideaEl.value.trim();
+      if (!idea) return;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'ANALYSING...';
+      loadingMsg.classList.remove('hidden');
+      errorMsg.classList.add('hidden');
+
+      let msgIdx = 0;
+      loadingMsg.textContent = LOADING_MESSAGES[0];
+      loadingInterval = setInterval(() => {
+        msgIdx = (msgIdx + 1) % LOADING_MESSAGES.length;
+        loadingMsg.textContent = LOADING_MESSAGES[msgIdx];
+      }, 2800);
+
+      try {
+        const response = await fetch('/api/evaluate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            idea,
+            budget: budgetEl.value,
+            hours: hoursEl.value,
+            skills: skillsEl.value || 'Not specified',
+          }),
+        });
+
+        if (!response.ok) throw new Error('API failed');
+
+        const result = await response.json();
+        showResults(idea, result);
+      } catch (err) {
+        errorMsg.textContent = "The reality check machine broke. Which is itself a lesson about passive income. Try again.";
+        errorMsg.classList.remove('hidden');
+      } finally {
+        clearInterval(loadingInterval);
+        loadingMsg.classList.add('hidden');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'CHECK MY REALITY';
+        submitBtn.classList.remove('faded');
+      }
+    }
+
+    function getScoreColor(s) {
+      if (s <= 2) return '#e63946';
+      if (s <= 4) return '#f4845f';
+      if (s <= 6) return '#f4a261';
+      if (s <= 8) return '#2a9d8f';
+      return '#06d6a0';
+    }
+
+    function getScoreLabel(s) {
+      if (s <= 2) return 'DELUSION';
+      if (s <= 4) return 'COPIUM';
+      if (s <= 6) return 'MAYBE?';
+      if (s <= 8) return 'LEGIT';
+      return 'UNICORN';
+    }
+
+    function showResults(idea, result) {
+      formSection.classList.add('hidden');
+      resultsSection.classList.remove('hidden');
+
+      document.getElementById('result-idea').textContent = `You said: "${idea}"`;
+
+      const color = getScoreColor(result.score);
+      document.getElementById('score-circle').style.border = `5px solid ${color}`;
+      document.getElementById('score-number').textContent = result.score;
+      document.getElementById('score-number').style.color = color;
+      document.getElementById('score-label').textContent = getScoreLabel(result.score);
+      document.getElementById('score-label').style.color = color;
+
+      // Typewriter effect for one-liner
+      const oneLinerEl = document.getElementById('one-liner');
+      oneLinerEl.textContent = '';
+      typewrite(oneLinerEl, result.oneLiner);
+
+      // Sections
+      const sections = [
+        { label: 'WHAT ACTUALLY HAPPENS', text: result.reality },
+        { label: 'BEST CASE', text: result.bestCase },
+        { label: 'WORST CASE', text: result.worstCase },
+        { label: 'REALISTIC MONTHLY INCOME (6 MONTHS IN)', text: result.monthlyIncome },
+        { label: 'TIME TO FIRST DOLLAR', text: result.timeToProfit },
+        { label: 'WHAT YOU ACTUALLY NEED', text: result.whatYouActuallyNeed },
+        { label: 'A BETTER VERSION OF THIS IDEA', text: result.alternativeAngle },
+      ];
+
+      const container = document.getElementById('sections-container');
+      container.innerHTML = '';
+      sections.forEach((s, i) => {
+        const div = document.createElement('div');
+        div.className = 'section';
+        div.innerHTML = `<div class="section-label">${s.label}</div><div class="section-text">${s.text}</div>`;
+        container.appendChild(div);
+      });
+
+      resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function typewrite(el, text, speed = 18) {
+      let i = 0;
+      const interval = setInterval(() => {
+        if (i < text.length) {
+          el.textContent += text[i];
+          i++;
+        } else {
+          clearInterval(interval);
+        }
+      }, speed);
+    }
+  </script>
+</body>
+</html>
